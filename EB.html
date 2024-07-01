@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Electricity Bill Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid  red;
+            border-radius: 5px;
+            color:blue;
+        }
+          h1{
+               text-align:center;
+          }
+        .input-group {
+            margin-bottom: 10px;
+        }
+        .input-group label {
+            display: inline-block;
+            width: 150px;
+        }
+        #result {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Electricity Bill Calculator</h2>
+        <div class="input-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" required>
+        </div>
+        <div class="input-group">
+            <label for="units">Units Consumed:</label>
+            <input type="number" id="units" required>
+        </div>
+        <button onclick="calculateBill()">Calculate Bill</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function calculateBill() {
+            const name = document.getElementById('name').value;
+            const units = parseFloat(document.getElementById('units').value);
+            const ratePerUnit = 5.0; // Assuming Rs. 5 per unit
+            const fixedCharge = 50.0; // Assuming Rs. 50 as fixed charge
+
+            if (isNaN(units) || units < 0) {
+                alert('Please enter a valid number of units.');
+                return;
+            }
+
+            const totalAmount = fixedCharge + ratePerUnit * units;
+            const resultElement = document.getElementById('result');
+            resultElement.textContent = `${name}, Your Electricity Bill Amount is Rs. ${totalAmount.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>
